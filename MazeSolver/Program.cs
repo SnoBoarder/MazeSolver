@@ -23,6 +23,7 @@ namespace MazeSolver
 
             MazeSolver solver = new MazeSolver();
             solver.setData(mazeOne);
+            solver.solve();
 
             while(true)
             {
