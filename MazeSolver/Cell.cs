@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 
 namespace MazeSolver
 {
+    /// <summary>
+    /// The Cell represents the cell of a maze.
+    /// </summary>
     public class Cell
     {
+        // reference to its own row and col
         private int _row;
         private int _col;
 
-        private bool _blocked;
-        private Cell _parent = null;
-        private bool _visited;
+        private bool _blocked; // check whether the cell is a block or not
+        private Cell _parent = null; // check if the cell has a parent (this is used to find the final path)
+        private bool _visited; // check if the cell has been visited
 
-        private double _distanceToGoal = -1.0;
+        private bool _final; // if true, this cell is part of the final path from start to end
+
+        private double _distanceToGoal = -1.0; // the distance from itself to the end cell
 
         public Cell(bool blocked, int row, int col)
         {
@@ -29,7 +35,7 @@ namespace MazeSolver
             get { return _distanceToGoal; }
             set
             {
-                if (_distanceToGoal == -1.0)
+                if (_distanceToGoal == -1.0) // only set distance once
                     _distanceToGoal = value;
             }
         }
@@ -59,6 +65,12 @@ namespace MazeSolver
         {
             get { return _parent; }
             set { _parent = value; }
+        }
+
+        public bool final
+        {
+            get { return _final; }
+            set { _final = value; }
         }
     }
 }
